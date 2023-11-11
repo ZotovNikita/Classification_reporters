@@ -1,8 +1,9 @@
+import typing as t
 from transformers import PreTrainedTokenizer, PreTrainedTokenizerFast
 from transformers import T5ForConditionalGeneration
 
 
-def summarization(text: str, tokenizer_sum: PreTrainedTokenizer | PreTrainedTokenizerFast, model_sum: T5ForConditionalGeneration):
+def summarization(text: str, tokenizer_sum: t.Union[PreTrainedTokenizer, PreTrainedTokenizerFast], model_sum: T5ForConditionalGeneration):
     input_ids = tokenizer_sum(
         [text],
         max_length=300,
