@@ -1,0 +1,23 @@
+.question-block {
+    background-color: #e6f7ff;
+    padding: 20px;
+    border-radius: 10px;
+}
+
+.question-header {
+    font-family: 'Abril Fatface', serif;
+    color: #004080;
+}
+
+.answer-block {
+    background-color: #e5ffd1;
+    padding: 20px;
+    border-radius: 10px;
+    margin: 1.25rem 0;
+}
+
+.answer-text {
+    font-family: 'Cabin', sans-serif;
+    color: #1b1b1b;
+    margin: 0;
+}
