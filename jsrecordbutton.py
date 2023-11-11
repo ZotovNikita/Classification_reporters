@@ -1,8 +1,9 @@
 from bokeh.models.widgets import Button
 from bokeh.models import CustomJS
 from streamlit_bokeh_events import streamlit_bokeh_events
-import streamlit.components.v1 as components
 import streamlit as st
+
+
 def jsbutton():
     stt_button = Button(label="Speak", width=100)
     stt_button.js_on_event("button_click", CustomJS(code="""                                                                                         
@@ -35,5 +36,3 @@ def jsbutton():
     if result:
         if "GET_TEXT" in result:
             st.write(result.get("GET_TEXT"))
-   
-   
