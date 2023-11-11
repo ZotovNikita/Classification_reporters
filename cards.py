@@ -68,10 +68,10 @@ def cards():
             with stylable_container(
                 key='container_with_border',
                 css_styles="""
-            {
-                margin: 1.25rem 0 0;
-            }
-            """):
+                {
+                    margin: 1.25rem 0 0;
+                }
+                """):
                 with st.expander("Ответ"):
                     st.markdown(
                         f"""
