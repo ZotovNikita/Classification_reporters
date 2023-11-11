@@ -165,3 +165,6 @@ cats&dogs/
 objects/
 
 nlp/model
+nlp/tokenize
+nlp/model_sum
+nlp/tokenize_sum
