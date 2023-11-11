@@ -2,6 +2,7 @@ import json
 import typing as t
 import random
 import streamlit as st
+from pathlib import Path
 from streamlit_extras.stylable_container import stylable_container
 
 
@@ -12,13 +13,13 @@ def local_css(file_name):
 
 
 @st.cache_data
-def load_cards(cards_path: str) -> t.Mapping[str, t.Mapping[str, str]]:
+def load_cards(cards_path: str = f'{Path(__file__).parent / "cards.json"}') -> t.Iterable[t.Mapping[str, str]]:
     with open(cards_path, encoding='utf-8') as f:
         return json.load(f)
 
 
-def get_random_card(cards_: t.Mapping[str, t.Mapping[str, str]]) -> t.Tuple[str, t.Mapping[str, str]]:
-    random_card = random.choice(tuple(cards_.items()))
+def get_random_card(cards_: t.Iterable[t.Mapping[str, str]]) -> t.Mapping[str, str]:
+    random_card = random.choice(tuple(cards_))
     return random_card
 
 
@@ -31,11 +32,11 @@ def callback2():
 
 
 def cards():
-    local_css('style.css')
-    cards_ = load_cards('cards.json')
+    local_css(f'{Path(__file__).parent / "style.css"}')
+    cards_ = load_cards()
 
-    card_id, card = get_random_card(cards_)
-    card_q, card_ans = card['txt'], card['ans']
+    card = get_random_card(cards_)
+    card_id, card_q, card_ans = card['id'], card['txt'], card['ans']
 
     if "button_clicked" not in st.session_state:
         st.session_state.button_clicked = False
