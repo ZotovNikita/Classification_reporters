@@ -21,7 +21,7 @@ def scene1():
                 unsafe_allow_html=True,
             )
 
-            audio_file = open("game/audio/intro.mp3", "rb")
+            audio_file = open("game/audio/voice1.mp3", "rb")
             audio_bytes = audio_file.read()
             st.audio(audio_bytes, format="audio/mpeg")
 
@@ -42,7 +42,7 @@ def scene2():
                 unsafe_allow_html=True,
             )
 
-            audio_file = open("game/audio/intro.mp3", "rb")
+            audio_file = open("game/audio/voice2.mp3", "rb")
             audio_bytes = audio_file.read()
             st.audio(audio_bytes, format="audio/mpeg")
 
@@ -64,7 +64,7 @@ def scene3():
                 unsafe_allow_html=True,
             )
 
-            audio_file = open("game/audio/intro.mp3", "rb")
+            audio_file = open("game/audio/voice3.mp3", "rb")
             audio_bytes = audio_file.read()
             st.audio(audio_bytes, format="audio/mpeg")
 
@@ -97,7 +97,7 @@ def scene4():
                 unsafe_allow_html=True,
             )
 
-            audio_file = open("game/audio/intro.mp3", "rb")
+            audio_file = open("game/audio/voice4-5.mp3", "rb")
             audio_bytes = audio_file.read()
             st.audio(audio_bytes, format="audio/mpeg")
 
@@ -117,7 +117,7 @@ def scene5():
                 unsafe_allow_html=True,
             )
 
-            audio_file = open("game/audio/intro.mp3", "rb")
+            audio_file = open("game/audio/voice6.mp3", "rb")
             audio_bytes = audio_file.read()
             st.audio(audio_bytes, format="audio/mpeg")
 
@@ -138,7 +138,7 @@ def scene6():
                 unsafe_allow_html=True,
             )
 
-            audio_file = open("game/audio/intro.mp3", "rb")
+            audio_file = open("game/audio/voice7.mp3", "rb")
             audio_bytes = audio_file.read()
             st.audio(audio_bytes, format="audio/mpeg")
 
@@ -160,7 +160,7 @@ def scene7():
                 unsafe_allow_html=True,
             )
 
-            audio_file = open("game/audio/intro.mp3", "rb")
+            audio_file = open("game/audio/voice8.mp3", "rb")
             audio_bytes = audio_file.read()
             st.audio(audio_bytes, format="audio/mpeg")
 
@@ -181,7 +181,7 @@ def scene8():
                 unsafe_allow_html=True,
             )
 
-            audio_file = open("game/audio/intro.mp3", "rb")
+            audio_file = open("game/audio/voice9.mp3", "rb")
             audio_bytes = audio_file.read()
             st.audio(audio_bytes, format="audio/mpeg")
 
@@ -201,18 +201,9 @@ def scene9():
                 unsafe_allow_html=True,
             )
 
-            audio_file = open("game/audio/intro.mp3", "rb")
+            audio_file = open("game/audio/voice10.mp3", "rb")
             audio_bytes = audio_file.read()
             st.audio(audio_bytes, format="audio/mpeg")
 
     # st.button("Назад", type="primary", on_click = set_state("scene8"))
-
-def test1(): 
-
-    st.multiselect("Выбери все верные варианты: Инструкция по организации движения поездов и маневровой работы на железнодорожном транспорте Российской Федерации устанавливает:", 
-                   ["правила приема, отправления и пропуска поездов", 
-                    "правила конструирования поездов", 
-                    "правила производства маневров",
-                    "правила приема и отправления поездов в условиях выполнения   ремонтно-строительных работ ",
-                    "внутренний интерьер вагонов"])
     
