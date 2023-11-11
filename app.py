@@ -88,6 +88,11 @@ def main():
                         st.button("отправить", on_click=on_input_change2(button_value), key="dsd")
 
 
+@st.cache_resource
+def load_vosk():
+    return vosk.Model("vosk-model-small-ru-0.22")
+
+
 if __name__ == "__main__":
-    model = vosk.Model("vosk-model-small-ru-0.22")
+    model = load_vosk()
     main()

@@ -1,21 +1,24 @@
 import random
 import streamlit as st
+import json
+import typing as t
 
 
-questions = {
-    1: "Кто такой Том Холми?",
-    2: "Где Джесси?",
-    3: "Что такое РЖД?",
-}
-
-def get_random_question() -> str:
-    random_question = random.choice(tuple(questions.items()))
-    return random_question
-
-
+@st.cache_resource
 def local_css(file_name):
     with open(file_name) as f:
         st.markdown(f"<style>{f.read()}</style>", unsafe_allow_html=True)
+
+
+@st.cache_data
+def load_cards(cards_path: str) -> t.Mapping[str, str]:
+    with open(cards_path, encoding='utf-8') as f:
+        return json.load(f)
+
+
+def get_random_question(cards_: t.Mapping[str, str]) -> str:
+    random_question = random.choice(tuple(cards_.items()))
+    return random_question
 
 
 def cards():
@@ -26,8 +29,9 @@ def cards():
         st.session_state.button2_clicked = True
 
     local_css('style.css')
+    cards_ = load_cards('cards.json')
 
-    q_id, question_text = get_random_question()
+    q_id, question_text = get_random_question(cards_)
 
     if "button_clicked" not in st.session_state:
         st.session_state.button_clicked = False
