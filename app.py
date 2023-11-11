@@ -28,7 +28,7 @@ def main():
         selected = option_menu(
             "Меню",
             ["Игра", 'Теория', 'Карточки'],
-            icons=['house', 'gear', 'shield'],
+            icons=['house', 'gear', 'bi-book'],
             menu_icon="cast",
             default_index=1,
         )

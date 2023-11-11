@@ -1,7 +1,8 @@
-import random
-import streamlit as st
 import json
 import typing as t
+import random
+import streamlit as st
+from streamlit_extras.stylable_container import stylable_container
 
 
 @st.cache_resource
@@ -11,27 +12,29 @@ def local_css(file_name):
 
 
 @st.cache_data
-def load_cards(cards_path: str) -> t.Mapping[str, str]:
+def load_cards(cards_path: str) -> t.Mapping[str, t.Tuple[str, str]]:
     with open(cards_path, encoding='utf-8') as f:
         return json.load(f)
 
 
-def get_random_question(cards_: t.Mapping[str, str]) -> str:
-    random_question = random.choice(tuple(cards_.items()))
-    return random_question
+def get_random_card(cards_: t.Mapping[str, t.Tuple[str, str]]) -> t.Tuple[str, t.Tuple[str, str]]:
+    random_card = random.choice(tuple(cards_.items()))
+    return random_card
+
+
+def callback():
+    st.session_state.button_clicked = True
+
+
+def callback2():
+    st.session_state.button2_clicked = True
 
 
 def cards():
-    def callback():
-        st.session_state.button_clicked = True
-
-    def callback2():
-        st.session_state.button2_clicked = True
-
     local_css('style.css')
     cards_ = load_cards('cards.json')
 
-    q_id, question_text = get_random_question(cards_)
+    card_id, (card_q, card_ans) = get_random_card(cards_)
 
     if "button_clicked" not in st.session_state:
         st.session_state.button_clicked = False
@@ -42,7 +45,7 @@ def cards():
     tab1, = st.tabs(['Карточки'])
 
     with tab1:
-        col1, col2 = st.columns(2)
+        col1, = st.columns(1)
         with col1:
             question = st.button(
                 'Получить вопрос',
@@ -50,34 +53,31 @@ def cards():
                 key='Draw',
                 use_container_width=True,
             )
-        with col2:
-            answer = st.button(
-                'Показать ответ',
-                on_click=callback2,
-                key='Answer',
-                use_container_width=True,
-            )
 
         if question or st.session_state.button_clicked:
             st.markdown(
                 f"""
                 <div class="question-block">
-                    <h1 class="question-header">Вопрос #{q_id}</h1>
-                    <h4>&mdash; {question_text}</h4>
+                    <h1 class="question-header">Вопрос #{card_id}</h1>
+                    <h4>&mdash; {card_q}</h4>
                 </div>
                 """,
                 unsafe_allow_html=True,
             )
-            u_answer = st.text_input('Ваш ответ: ', value='')
 
-            if answer and st.session_state.button2_clicked:
-                        # <p class='answer-text'>Правильный ответ: {u_answer}</p>
-                st.markdown(
-                    f"""
-                    <div class='answer-block'>
-                        <p class='answer-text'>Ваш ответ схож с правильным на {0.99:.3%}</p>
-                    </div>
-                    """,
-                    unsafe_allow_html=True,
-                )
-                st.session_state.button2_clicked = False
+            with stylable_container(
+                key='container_with_border',
+                css_styles="""
+            {
+                margin: 1.25rem 0 0;
+            }
+            """):
+                with st.expander("Ответ"):
+                    st.markdown(
+                        f"""
+                        <div class='answer-block'>
+                            <p class='answer-text'>{card_ans}</p>
+                        </div>
+                        """,
+                        unsafe_allow_html=True,
+                    )
