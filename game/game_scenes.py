@@ -4,11 +4,7 @@ import game.game_config as game_config
 import game.game_def as game_def
 import streamlit_extras.stylable_container as stylable_container
 
-###############################################
-#
-#               intro Scene
-#
-################################################
+
 def set_state(i):
     st.session_state.place = i
 
@@ -51,19 +47,7 @@ def scene2():
             st.audio(audio_bytes, format="audio/mpeg")
 
     # st.button("Назад", type="primary", on_click = set_state("scene1"), key='1')
-    with st.container():
-            with stylable_container(
-            key="container_with_border",
-            css_styles="""
-                {
-                    position: fixed;
-                    right:30;
-                    bottom:0;
-                    color:black;
-                    background-size: cover;
-                }
-                """,
-            ):st.button("Далее", type="primary", on_click = set_state("scene3"), key='2')
+    st.button("Далее", type="primary", on_click = set_state("scene3"), key='2')
     
 
 
@@ -231,3 +215,4 @@ def test1():
                     "правила производства маневров",
                     "правила приема и отправления поездов в условиях выполнения   ремонтно-строительных работ ",
                     "внутренний интерьер вагонов"])
+    
