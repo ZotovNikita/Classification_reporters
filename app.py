@@ -4,7 +4,7 @@ from streamlit_option_menu import option_menu
 import vosk
 from game.streamlit_app import game
 from cards import cards
-from voice_recignizing_button import voice_recignizing_button
+from voice_recognizing_button import voice_recognizing_button
 import streamlit.components.v1 as components
 from streamlit_extras.stylable_container import stylable_container
 from streamlit_chat import message

@@ -1,8 +1,8 @@
 import streamlit as st
-from voice_recognize import vosk_voice_recignize
+from voice_recognize import vosk_voice_recognize
 
 
-def voice_recignizing_button(model):
+def voice_recognizing_button(model):
     st.markdown(
         """
         <style>
@@ -16,5 +16,5 @@ def voice_recignizing_button(model):
         unsafe_allow_html=True,
     )
     if st.button("", key='voice_button'):
-        text = vosk_voice_recignize(model)
+        text = vosk_voice_recognize(model)
         st.write(f"Вы сказали: {text}")
