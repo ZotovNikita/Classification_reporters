@@ -34,6 +34,6 @@ def jsbutton():
 
     if result:
         if "GET_TEXT" in result:
-            st.write(result.get("GET_TEXT"))
+            yield result.get("GET_TEXT")
    
    

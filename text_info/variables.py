@@ -97,26 +97,26 @@ id2topic = {
     "23": "ПОРЯДОК ПОСТАНОВКИ В ПОЕЗДА ВАГОНОВ С ГРУЗАМИ, ТРЕБУЮЩИМИ ОСОБЫХ УСЛОВИЙ ПЕРЕВОЗКИ И СПЕЦИАЛЬНОГО ЖЕЛЕЗНОДОРОЖНОГО ПОДВИЖНОГО СОСТАВА",
 }
 
-from pathlib import Path
-import os
-import sys
+# from pathlib import Path
+# import os
+# import sys
 
-sys.path.append(str(Path(os.getcwd())))
+# sys.path.append(str(Path(os.getcwd())))
 
 
-from model.sbert import model_sbert, tokenizer_sbert
-from utils.find_sentences import find_sentences
-from utils.find_top_k_sentences import find_top_k_sentences
-from model.rut5_base_sum_gazeta import model_sum, tokenizer_sum
-from utils.summarization import summarization
+# from model.sbert import model_sbert, tokenizer_sbert
+# from utils.find_sentences import find_sentences
+# from utils.find_top_k_sentences import find_top_k_sentences
+# from model.rut5_base_sum_gazeta import model_sum, tokenizer_sum
+# from utils.summarization import summarization
 
-id = 22
-print(id2text[id])
-print("1------------------------------------")
-query = 'Работники железнодорожного транспорта, не прошедшие аттестацию, не допускаются к выполнению определенных работ.'
-print(find_sentences(query, id2text, id2vec, tokenizer_sbert, model_sbert))
-print("2------------------------------------")
-article_text = ' '.join(find_top_k_sentences(query, id2text, id2vec, tokenizer_sbert, model_sbert, 5))
-print(article_text)
-print("3------------------------------------")
-print(summarization(query + article_text , tokenizer_sum, model_sum))
+# id = 22
+# print(id2text[id])
+# print("1------------------------------------")
+# query = 'Работники железнодорожного транспорта, не прошедшие аттестацию, не допускаются к выполнению определенных работ.'
+# print(find_sentences(query, id2text, id2vec, tokenizer_sbert, model_sbert))
+# print("2------------------------------------")
+# article_text = ' '.join(find_top_k_sentences(query, id2text, id2vec, tokenizer_sbert, model_sbert, 5))
+# print(article_text)
+# print("3------------------------------------")
+# print(summarization(query + article_text , tokenizer_sum, model_sum))

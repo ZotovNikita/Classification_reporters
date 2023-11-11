@@ -6,7 +6,7 @@ streamlit_autorefresh
 streamlit-option-menu
 bokeh==2.4.3
 streamlit-bokeh-events
-streamlit_extras==0.2.4
+streamlit_extras==0.3.5
 plotly
 seaborn
 
