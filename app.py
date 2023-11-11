@@ -3,7 +3,7 @@ from voice_recignizing_button import voice_recignizing_button
 from jsrecordbutton import jsbutton
 from streamlit_option_menu import option_menu
 import vosk
-from game.streamlit_app import game
+from game.streamlit_app import game2
 from voice_recignizing_button import voice_recignizing_button
 import streamlit.components.v1 as components
 from streamlit_extras.stylable_container import stylable_container 
@@ -27,7 +27,7 @@ def main():
             icons=['house', 'gear'], menu_icon="cast", default_index=1)
         selected
     if selected == "игра":
-        game()
+        game2()
     
     # with st.container():
     #     with stylable_container(
