@@ -163,3 +163,5 @@ cython_debug/
 
 cats&dogs/
 objects/
+
+nlp/model
