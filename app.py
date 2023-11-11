@@ -4,7 +4,7 @@ from game.streamlit_app import game
 from exam import exam
 from cards import cards
 from theory import theory
-
+from game.game_scenes_chapter_1 import test3, test1, test2
 
 def main():
     st.markdown(

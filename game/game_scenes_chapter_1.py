@@ -2,6 +2,11 @@ import streamlit as st
 from streamlit_extras.stoggle import stoggle
 import game.game_config as game_config
 import game.game_def as game_def
+from st_draggable_list import DraggableList
+from model.sbert import tokenizer_sbert, model_sbert
+from utils.cos_similarity import cos_similarity
+from utils.get_embedding import get_embedding
+from utils.lower_case import lower_case
 
 
 def set_state(i):
@@ -231,13 +236,52 @@ def ch1_scene11():
             audio_bytes = audio_file.read()
             st.audio(audio_bytes, format="audio/mpeg")
 
-    # st.button("Назад", type="primary", on_click = set_state("ch1_scene10"))
+    st.button("Далее", type="primary", on_click = set_state("ch1_test1"))
 
 def test1(): 
-
-    st.multiselect("Выбери все верные варианты: Инструкция по организации движения поездов и маневровой работы на железнодорожном транспорте Российской Федерации устанавливает:", 
-                   ["правила приема, отправления и пропуска поездов", 
+    st.title('Выбери все верные варианты:')
+    a = st.multiselect("Инструкция по организации движения поездов и маневровой работы на железнодорожном транспорте Российской Федерации устанавливает:", 
+                   [f:="правила приема, отправления и пропуска поездов", 
                     "правила конструирования поездов", 
-                    "правила производства маневров",
-                    "правила приема и отправления поездов в условиях выполнения   ремонтно-строительных работ ",
+                    s:="правила производства маневров",
+                    t:="правила приема и отправления поездов в условиях выполнения   ремонтно-строительных работ ",
                     "внутренний интерьер вагонов"])
+    
+    if not set(a).difference([f, s, t]) and len(set(a)) == 3:
+        st.button("Далее", type="primary", on_click = set_state("ch1_test2"))
+    
+def test2():
+    st.title("Восстановите определение в правильном порядке")
+
+    data = [
+        {"id": "2", "order": 2, "name": "пользования к инфраструктуре общего пользования или к железнодорожным путям необщего пользования графики"},
+        {"id": "1", "order": 1, "name": "допускается утверждать свой график движения поездов. В случае примыкания железнодорожных путей необщего"},
+        {"id": "3", "order": 3, "name": "движения поездов должны быть согласованы владельцем инфраструктуры и владельцем железнодорожных путей необщего пользования"},
+        {"id": "0", "order": 0, "name": "На железнодорожных путях необщего пользования владельцу железнодорожных путей необщего пользования"},
+    ]
+
+    slist = DraggableList(data, width="100%")
+    if all([int(d["id"]) == d["order"] for d in slist]):
+        st.button("Далее", type="primary", on_click = set_state("ch1_test3"))
+
+def test3():
+    st.title("Ответьте на вопрос")
+    st.write("В каком порядке утверждается график движения поездов?")
+
+    true_answer = "Сводный график движения поездов утверждается в порядке, определяемом федеральным органом исполнительной власти в области железнодорожного транспорта, на основании предложенных владельцами инфраструктур графиков движения поездов в пределах инфраструктур"
+
+    answer = st.text_input('Ваш ответ: ')
+    
+    if st.button('Далее'):
+        similarity = round(cos_similarity(
+            get_embedding(lower_case(true_answer), tokenizer_sbert, model_sbert),
+            get_embedding(lower_case(answer), tokenizer_sbert, model_sbert)
+        ).item(), 2)
+
+        if similarity > 0.5:
+            st.write(f"Ваш ответ похож на истинный на {similarity * 100}%")
+        else:
+            st.write(f"Ваш ответ не похож на истинный на {100 - similarity * 100}%")
+
+        with st.expander("Ответ"):
+                st.write(true_answer)
