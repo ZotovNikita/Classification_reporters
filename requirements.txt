@@ -4,6 +4,7 @@ numpy
 streamlit
 streamlit_autorefresh
 streamlit-option-menu
+streamlit_chat==0.0.22
 bokeh==2.4.3
 streamlit-bokeh-events
 streamlit_extras==0.3.5

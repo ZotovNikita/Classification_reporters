@@ -1,7 +1,6 @@
 from bokeh.models.widgets import Button
 from bokeh.models import CustomJS
 from streamlit_bokeh_events import streamlit_bokeh_events
-import streamlit as st
 
 
 def jsbutton():
@@ -35,4 +34,4 @@ def jsbutton():
 
     if result:
         if "GET_TEXT" in result:
-            st.write(result.get("GET_TEXT"))
+            yield result.get("GET_TEXT")
