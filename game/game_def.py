@@ -9,3 +9,6 @@ def clear(ss_variable):
 
 def temp_clear():
     st.session_state["temp"] = ""
+
+def restart():
+    st.session_state["game"] = -1

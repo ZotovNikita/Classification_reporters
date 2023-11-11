@@ -9,7 +9,6 @@ def set_state(i):
     st.session_state.place = i
 
 def scene1():
-
     col1, col2 = st.columns(2, gap="small")
     with col1:
         st.image(game_config.image_source["start_scene"])
@@ -189,7 +188,6 @@ def scene8():
     # st.button("Назад", type="primary", on_click = set_state("scene7"))
 
 def scene9():
-
     col1, col2 = st.columns(2, gap="small")
     with col1:
         st.image(game_config.image_source["in_train"])
@@ -204,6 +202,7 @@ def scene9():
             audio_file = open("game/audio/intro.mp3", "rb")
             audio_bytes = audio_file.read()
             st.audio(audio_bytes, format="audio/mpeg")
+    game_def.restart()
 
     # st.button("Назад", type="primary", on_click = set_state("scene8"))
 

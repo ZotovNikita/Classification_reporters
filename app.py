@@ -11,19 +11,15 @@ from streamlit_chat import message
 from utils.find_sentences import find_sentences
 from text_info.variables import id2text, id2vec
 from model.sbert import model_sbert, tokenizer_sbert
+from game_menu import game_menu
+from game.game_def import restart
 
 
 def main():
-    st.markdown(
-        """
-        <style>
-        #MainMenu {visibility: hidden;}
-        footer {visibility: hidden;}
-        </style>
-        """,
-        unsafe_allow_html=True,
-    )
+    if "game" not in st.session_state:
+        st.session_state["game"] = -1
 
+    
     with st.sidebar:
         selected = option_menu(
             "Меню",
@@ -33,10 +29,34 @@ def main():
             default_index=1,
         )
         selected
-
     if selected == 'Игра':
-        game()
-
+        modules = ["Введение", "ИНСТРУКЦИЯ ПО ОРГАНИЗАЦИИ ДВИЖЕНИЯ ПОЕЗДОВ И МАНЕВРОВОЙ РАБОТЫ НА ЖЕЛЕЗНОДОРОЖНОМ ТРАНСПОРТЕ РОССИЙСКОЙ ФЕДЕРАЦИИ.", "Общие требования к организации движения поездов на железнодорожном транспорте",
+                    "ИНСТРУКЦИЯ ПО СИГНАЛИЗАЦИИ НА ЖЕЛЕЗНОДОРОЖНОМ ТРАНСПОРТЕ РОССИЙСКОЙ ФЕДЕРАЦИИ","Звуковые сигналы на железнодорожном транспорте","Общие положения","Правила применения семафоров","Ручные сигналы на железнодорожном транспорте",]
+        i = 0
+        div = st.empty()
+        if st.session_state["game"] == -1:
+            with div.container():
+                for module in modules:
+                    with st.expander(module):
+                        if i == 0:
+                            if st.button("играть", key = "startass"):
+                                st.session_state["game"] = i 
+                        elif i == 1:
+                            st.button("играть", key = "start2")
+                        else:
+                            st.write("Comming soon 👀")
+                        i+=1           
+        if st.session_state["game"] == 0:
+            div.empty()
+            with stylable_container(
+                key="container_with_border",
+                css_styles="""
+                {
+                   padding:3rem,5rem;
+                }
+                """,
+            ):
+                game()
     if selected == 'Карточки':
         cards()
 
@@ -94,5 +114,27 @@ def load_vosk():
 
 
 if __name__ == "__main__":
+    st.set_page_config(layout="wide")
+    remove_padding_css = """
+        .block-container {
+        padding: 2rem 2rem;
+        }
+        """
+    st.markdown(
+        "<style>"
+        + remove_padding_css
+        + "</styles>",
+        unsafe_allow_html=True,
+    )
+    st.expander("foo")
+    st.markdown(
+        """
+        <style>
+        #MainMenu {visibility: hidden;}
+        footer {visibility: hidden;}
+        </style>
+        """,
+        unsafe_allow_html=True,
+    )
     model = load_vosk()
     main()

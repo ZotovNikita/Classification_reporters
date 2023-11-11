@@ -1,7 +1,5 @@
 import streamlit as st
-import streamlit.components.v1 as components
-from streamlit_extras.stoggle import stoggle
-from streamlit_extras.metric_cards import style_metric_cards
+
 import game.game_scenes as game_scenes
 
 
