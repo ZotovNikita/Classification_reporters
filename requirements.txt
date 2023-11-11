@@ -10,7 +10,8 @@ streamlit_extras==0.2.4
 plotly
 seaborn
 
-torch
+--extra-index-url https://download.pytorch.org/whl/cu121
+torch==2.1.0+cu121
 
 navec
 razdel
