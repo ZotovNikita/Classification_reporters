@@ -6,7 +6,7 @@ from streamlit_chat import message
 from voice_recognizing_button import voice_recognizing_button
 from utils.find_sentences import find_sentences
 from text_info.variables import id2text, id2vec
-from model.sbert import model_sbert, tokenizer_sbert
+from model import model_sbert, tokenizer_sbert
 
 
 @st.cache_resource

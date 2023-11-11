@@ -20,12 +20,11 @@ def main():
     with st.sidebar:
         selected = option_menu(
             "Меню",
-            ["Игра", 'Теория', 'Карточки', 'Тест'],
-            icons=['house', 'gear', 'bi-book', 'patch-question'],
+            ["К Стёпе", 'Ментор', 'Карточки', 'Тестирование'],
+            icons=['controller', 'credit-card-2-front', 'bi-book', 'patch-question'],
             menu_icon="cast",
             default_index=1,
         )
-        selected
 
     match selected:
         case 'Игра':
@@ -34,7 +33,7 @@ def main():
             theory()
         case 'Карточки':
             cards()
-        case 'Тест':
+        case 'Тестирование':
             exam()
 
 
