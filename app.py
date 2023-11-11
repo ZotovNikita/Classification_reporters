@@ -29,18 +29,18 @@ def main():
     if selected == "игра":
         game()
     
-    with st.container():
-        with stylable_container(
-        key="container_with_border",
-        css_styles="""
-            {
-                position: fixed;
-                right:0;
-                bottom:0;
-            }
-            """,
-        ):
-            jsbutton()
+    # with st.container():
+    #     with stylable_container(
+    #     key="container_with_border",
+    #     css_styles="""
+    #         {
+    #             position: fixed;
+    #             right:0;
+    #             bottom:0;
+    #         }
+    #         """,
+    #     ):
+    #         jsbutton()
     
 if __name__ == "__main__":
     main()

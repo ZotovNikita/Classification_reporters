@@ -1,13 +1,10 @@
 caption_below_input = 'Use mouse or [Tab] to focus on input field. To check potential actions, type "help".'
-# future improvements: all texts will be transferred to database this will clean up the code
 
 image_source = {
-    "introScene": "game/images/intro.png",
-    "sheepScene": "game/images/sheep.jpg",
-    "caveScene": "game/images/cave.jpg",
-    "poScene": "game/images/po.jpg",
-    "dragonScene": "game/images/NNdragon.png",
-    "libraryScene": "game/images/library.jpg",
-    "southpathScene": "game/images/southpath_small.png",
-    "elfScene": "game/images/elf.png",
+    "start_scene": "game/img/start_scene.jpg",
+    "in_train": "game/img/in_train.jpg",
+    "history1": "game/img/history1.jpg",
+    "history2": "game/img/history2.jpg",
+    "history3": "game/img/history3.jpg",
+    "history4": "game/img/history4.jpg",
 }
