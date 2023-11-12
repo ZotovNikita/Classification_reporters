@@ -2,11 +2,11 @@ import streamlit as st
 from streamlit_extras.stoggle import stoggle
 import game.game_config as game_config
 import game.game_def as game_def
-from st_draggable_list import DraggableList
 from model.sbert import tokenizer_sbert, model_sbert
 from utils.cos_similarity import cos_similarity
 from utils.get_embedding import get_embedding
 from utils.lower_case import lower_case
+from st_draggable_list import DraggableList
 
 
 def set_state(i):
@@ -25,7 +25,7 @@ def ch1_scene1():
                 unsafe_allow_html=True,
             )
 
-            audio_file = open("game/audio/intro.mp3", "rb")
+            audio_file = open("game/audio/ch1_voice1.mp3", "rb")
             audio_bytes = audio_file.read()
             st.audio(audio_bytes, format="audio/mpeg")
 
@@ -46,7 +46,7 @@ def ch1_scene2():
                 unsafe_allow_html=True,
             )
 
-            audio_file = open("game/audio/intro.mp3", "rb")
+            audio_file = open("game/audio/voice1.mp3", "rb")
             audio_bytes = audio_file.read()
             st.audio(audio_bytes, format="audio/mpeg")
 
@@ -68,11 +68,11 @@ def ch1_scene3():
                 unsafe_allow_html=True,
             )
 
-            audio_file = open("game/audio/intro.mp3", "rb")
+            audio_file = open("game/audio/voice1.mp3", "rb")
             audio_bytes = audio_file.read()
             st.audio(audio_bytes, format="audio/mpeg")
 
-    st.button("Далее", type="primary", on_click = set_state("ch1_scene4"), key='3')
+    st.button("Далее", type="primary", on_click = set_state("test1"), key='3')
     # st.button("Назад", type="primary", on_click = set_state("ch1_scene2"), key='4')
 
 
@@ -90,7 +90,7 @@ def ch1_scene4():
                 unsafe_allow_html=True,
             )
 
-            audio_file = open("game/audio/intro.mp3", "rb")
+            audio_file = open("game/audio/voice1.mp3", "rb")
             audio_bytes = audio_file.read()
             st.audio(audio_bytes, format="audio/mpeg")
 
@@ -110,7 +110,7 @@ def ch1_scene5():
                 unsafe_allow_html=True,
             )
 
-            audio_file = open("game/audio/intro.mp3", "rb")
+            audio_file = open("game/audio/voice1.mp3", "rb")
             audio_bytes = audio_file.read()
             st.audio(audio_bytes, format="audio/mpeg")
 
@@ -131,7 +131,7 @@ def ch1_scene6():
                 unsafe_allow_html=True,
             )
 
-            audio_file = open("game/audio/intro.mp3", "rb")
+            audio_file = open("game/audio/voice1.mp3", "rb")
             audio_bytes = audio_file.read()
             st.audio(audio_bytes, format="audio/mpeg")
 
@@ -153,7 +153,7 @@ def ch1_scene7():
                 unsafe_allow_html=True,
             )
 
-            audio_file = open("game/audio/intro.mp3", "rb")
+            audio_file = open("game/audio/voice1.mp3", "rb")
             audio_bytes = audio_file.read()
             st.audio(audio_bytes, format="audio/mpeg")
 
@@ -174,7 +174,7 @@ def ch1_scene8():
                 unsafe_allow_html=True,
             )
 
-            audio_file = open("game/audio/intro.mp3", "rb")
+            audio_file = open("game/audio/voice1.mp3", "rb")
             audio_bytes = audio_file.read()
             st.audio(audio_bytes, format="audio/mpeg")
 
@@ -194,7 +194,7 @@ def ch1_scene9():
                 unsafe_allow_html=True,
             )
 
-            audio_file = open("game/audio/intro.mp3", "rb")
+            audio_file = open("game/audio/voice1.mp3", "rb")
             audio_bytes = audio_file.read()
             st.audio(audio_bytes, format="audio/mpeg")
     st.button("Далее", type="primary", on_click = set_state("ch1_scene10"))
@@ -214,7 +214,7 @@ def ch1_scene10():
                 unsafe_allow_html=True,
             )
 
-            audio_file = open("game/audio/intro.mp3", "rb")
+            audio_file = open("game/audio/voice1.mp3", "rb")
             audio_bytes = audio_file.read()
             st.audio(audio_bytes, format="audio/mpeg")
 
@@ -232,23 +232,24 @@ def ch1_scene11():
             st.markdown(
                 f'<div class="fantasy-container"><img src="https://raw.githubusercontent.com/TomJohnH/streamlit-game/main/images/cat.gif" class="image"><p>Ты хорошо потрудился, должно быть ты устал, сделай перерыв, а пока вот тебе шутка \n\n— Проводник! Безобразие! Что у вас за поезд — только в него вошел, как у меня украли чемодан! \n\n— Ничего удивительного, наш поезд — скорый! \n\nМы хорошо провели время. Увидимся в следующем модуле!</p></div>', unsafe_allow_html=True)
 
-            audio_file = open("game/audio/intro.mp3", "rb")
+            audio_file = open("game/audio/voice1.mp3", "rb")
             audio_bytes = audio_file.read()
             st.audio(audio_bytes, format="audio/mpeg")
 
-    st.button("Далее", type="primary", on_click = set_state("ch1_test1"))
+    st.button("Далее", type="primary", on_click = set_state("test2"))
 
 def test1(): 
+    # if st.session_state["ch1_scenes_counter"]["intro_counter"] == 0:
     st.title('Выбери все верные варианты:')
     a = st.multiselect("Инструкция по организации движения поездов и маневровой работы на железнодорожном транспорте Российской Федерации устанавливает:", 
-                   [f:="правила приема, отправления и пропуска поездов", 
+                [f:="правила приема, отправления и пропуска поездов", 
                     "правила конструирования поездов", 
                     s:="правила производства маневров",
                     t:="правила приема и отправления поездов в условиях выполнения   ремонтно-строительных работ ",
                     "внутренний интерьер вагонов"])
     
     if not set(a).difference([f, s, t]) and len(set(a)) == 3:
-        st.button("Далее", type="primary", on_click = set_state("ch1_test2"))
+        st.button("Далее", type="primary", on_click = set_state("ch1_scene4"))
     
 def test2():
     st.title("Восстановите определение в правильном порядке")
@@ -262,7 +263,7 @@ def test2():
 
     slist = DraggableList(data, width="100%")
     if all([int(d["id"]) == d["order"] for d in slist]):
-        st.button("Далее", type="primary", on_click = set_state("ch1_test3"))
+        st.button("Далее", type="primary", on_click = set_state("test3"))
 
 def test3():
     st.title("Ответьте на вопрос")
@@ -285,3 +286,5 @@ def test3():
 
         with st.expander("Ответ"):
                 st.write(true_answer)
+    
+    game_def.restart()
