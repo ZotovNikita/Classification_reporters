@@ -49,9 +49,6 @@ def exam(n_cards: int = 5):
             del st.session_state.exam_cards
             st.session_state.exam_start = False
 
-            if st.button('Попробовать снова'):
-                pass
-
     if not st.session_state.exam_start:
         cards = load_cards()
         tp_choice = np.random.choice(len(cards), size=n_cards, replace=False)
@@ -70,6 +67,7 @@ def exam(n_cards: int = 5):
         st.session_state.cur_question = 1
         st.session_state.false_answered = False
         st.session_state.n_questions = n_cards
+        st.button('Начать')
     else:
         show_question(card_idx)
 
