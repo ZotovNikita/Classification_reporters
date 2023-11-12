@@ -1,15 +1,13 @@
 import streamlit as st
-from streamlit_extras.stoggle import stoggle
 import game.game_config as game_config
 import game.game_def as game_def
-import streamlit_extras.stylable_container as stylable_container
 
 
 def set_state(i):
     st.session_state.place = i
 
-def scene1():
 
+def scene1():
     col1, col2 = st.columns(2, gap="small")
     with col1:
         st.image(game_config.image_source["start_scene"])
@@ -27,7 +25,6 @@ def scene1():
 
     st.button("Далее", type="primary", on_click = set_state("scene2"))
 
-    
 
 def scene2():
 
@@ -48,7 +45,6 @@ def scene2():
 
     # st.button("Назад", type="primary", on_click = set_state("scene1"), key='1')
     st.button("Далее", type="primary", on_click = set_state("scene3"), key='2')
-    
 
 
 def scene3():
@@ -83,7 +79,6 @@ def scene3():
     # st.button("Назад", type="primary", on_click = set_state("scene2"), key='4')
 
 
-
 def scene4():
 
     col1, col2 = st.columns(2, gap="small")
@@ -103,6 +98,7 @@ def scene4():
 
     st.button("Далее", type="primary", on_click = set_state("scene5"))
     # st.button("Назад", type="primary", on_click = set_state("scene3"))
+
 
 def scene5():
 
@@ -146,7 +142,6 @@ def scene6():
     # st.button("Назад", type="primary", on_click = set_state("scene5"))
 
 
-
 def scene7():
 
     col1, col2 = st.columns(2, gap="small")
@@ -188,8 +183,8 @@ def scene8():
     st.button("Далее", type="primary", on_click = set_state("scene9"))
     # st.button("Назад", type="primary", on_click = set_state("scene7"))
 
-def scene9():
 
+def scene9():
     col1, col2 = st.columns(2, gap="small")
     with col1:
         st.image(game_config.image_source["in_train"])
@@ -204,6 +199,7 @@ def scene9():
             audio_file = open("game/audio/voice10.mp3", "rb")
             audio_bytes = audio_file.read()
             st.audio(audio_bytes, format="audio/mpeg")
+    game_def.restart()
 
     # st.button("Назад", type="primary", on_click = set_state("scene8"))
     

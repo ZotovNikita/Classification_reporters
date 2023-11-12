@@ -5,8 +5,6 @@ from exam import exam
 from cards import cards
 from theory import theory
 from streamlit_extras.stylable_container import stylable_container
-from game_menu import game_menu
-from game.game_def import restart
 
 
 def main():
