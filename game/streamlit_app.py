@@ -118,3 +118,9 @@ def game2():
         game_ch1_scenes.ch1_scene10()
     elif st.session_state.place == "ch1_scene11":
         game_ch1_scenes.ch1_scene11()
+    elif st.session_state.place == "test1":
+        game_ch1_scenes.test1()
+    elif st.session_state.place == "test2":
+        game_ch1_scenes.test2()
+    elif st.session_state.place == "test3":
+        game_ch1_scenes.test3()

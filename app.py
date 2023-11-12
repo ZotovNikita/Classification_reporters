@@ -5,6 +5,7 @@ from exam import exam
 from cards import cards
 from theory import theory
 from streamlit_extras.stylable_container import stylable_container
+from game.streamlit_app import game2 
 
 
 def main():
@@ -34,11 +35,12 @@ def main():
                                 if st.button("играть", key = "startass"):
                                     st.session_state["game"] = i 
                             elif i == 1:
-                                st.button("играть", key = "start2")
+                                if st.button("играть", key = "start2"):
+                                    st.session_state["game"] = i 
                             else:
                                 st.write("Comming soon 👀")
                             i+=1           
-            if st.session_state["game"] == 0:
+            elif st.session_state["game"] == 0:
                 div.empty()
                 with stylable_container(
                     key="container_with_border",
@@ -49,6 +51,18 @@ def main():
                     """,
                 ):
                     game()
+
+            elif st.session_state["game"] == 1:
+                div.empty()
+                with stylable_container(
+                    key="container_with_border",
+                    css_styles="""
+                    {
+                    padding:3rem,5rem;
+                    }
+                    """,
+                ): game2()
+
         case 'Ментор':
             theory()
         case 'Карточки':
